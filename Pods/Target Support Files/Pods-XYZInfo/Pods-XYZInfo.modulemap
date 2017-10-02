@@ -1,0 +1,6 @@
+framework module Pods_XYZInfo {
+  umbrella header "Pods-XYZInfo-umbrella.h"
+
+  export *
+  module * { export * }
+}
