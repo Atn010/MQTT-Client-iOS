@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E19AF161F838D7E0054CDA4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E19AF151F838D7E0054CDA4 /* Data.swift */; };
 		5E3C75581F81CD7F00644DA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C75571F81CD7F00644DA9 /* AppDelegate.swift */; };
 		5E3C755A1F81CD7F00644DA9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C75591F81CD7F00644DA9 /* LoginVC.swift */; };
 		5E3C755D1F81CD7F00644DA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E3C755B1F81CD7F00644DA9 /* Main.storyboard */; };
@@ -14,7 +15,6 @@
 		5E3C75621F81CD7F00644DA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E3C75601F81CD7F00644DA9 /* LaunchScreen.storyboard */; };
 		5E52EE9D1F81FBAA00EE44AB /* receiverLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EE9C1F81FBAA00EE44AB /* receiverLogic.swift */; };
 		5E52EE9F1F81FE0E00EE44AB /* senderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */; };
-		5E52EEA11F8217AA00EE44AB /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E52EEA01F8217AA00EE44AB /* Data.plist */; };
 		5E52EEA31F82241200EE44AB /* OverviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EEA21F82241200EE44AB /* OverviewTVC.swift */; };
 		5E52EEA51F82246300EE44AB /* TransferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EEA41F82246300EE44AB /* TransferVC.swift */; };
 		5E52EEA71F82305B00EE44AB /* List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E52EEA61F82305B00EE44AB /* List.plist */; };
@@ -25,6 +25,7 @@
 		00B4031BC50D5068C1338EDA /* Pods-XYZInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYZInfo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XYZInfo/Pods-XYZInfo.debug.xcconfig"; sourceTree = "<group>"; };
 		436CDE13E8C32A9D2EF20049 /* Pods-XYZInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYZInfo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XYZInfo/Pods-XYZInfo.release.xcconfig"; sourceTree = "<group>"; };
 		5E0FF8461F81DB730010FEA7 /* XYZInfo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XYZInfo-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E19AF151F838D7E0054CDA4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5E3C75541F81CD7F00644DA9 /* XYZInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYZInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E3C75571F81CD7F00644DA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E3C75591F81CD7F00644DA9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -34,7 +35,6 @@
 		5E3C75631F81CD7F00644DA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E52EE9C1F81FBAA00EE44AB /* receiverLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = receiverLogic.swift; sourceTree = "<group>"; };
 		5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = senderLogic.swift; sourceTree = "<group>"; };
-		5E52EEA01F8217AA00EE44AB /* Data.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		5E52EEA21F82241200EE44AB /* OverviewTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTVC.swift; sourceTree = "<group>"; };
 		5E52EEA41F82246300EE44AB /* TransferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferVC.swift; sourceTree = "<group>"; };
 		5E52EEA61F82305B00EE44AB /* List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = List.plist; sourceTree = "<group>"; };
@@ -85,8 +85,8 @@
 				5E0FF8461F81DB730010FEA7 /* XYZInfo-Bridging-Header.h */,
 				5E52EE9C1F81FBAA00EE44AB /* receiverLogic.swift */,
 				5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */,
-				5E52EEA01F8217AA00EE44AB /* Data.plist */,
 				5E52EEA61F82305B00EE44AB /* List.plist */,
+				5E19AF151F838D7E0054CDA4 /* Data.swift */,
 			);
 			path = XYZInfo;
 			sourceTree = "<group>";
@@ -173,7 +173,6 @@
 			files = (
 				5E3C75621F81CD7F00644DA9 /* LaunchScreen.storyboard in Resources */,
 				5E3C755F1F81CD7F00644DA9 /* Assets.xcassets in Resources */,
-				5E52EEA11F8217AA00EE44AB /* Data.plist in Resources */,
 				5E52EEA71F82305B00EE44AB /* List.plist in Resources */,
 				5E3C755D1F81CD7F00644DA9 /* Main.storyboard in Resources */,
 			);
@@ -250,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E19AF161F838D7E0054CDA4 /* Data.swift in Sources */,
 				5E3C755A1F81CD7F00644DA9 /* LoginVC.swift in Sources */,
 				5E52EE9D1F81FBAA00EE44AB /* receiverLogic.swift in Sources */,
 				5E52EEA31F82241200EE44AB /* OverviewTVC.swift in Sources */,
