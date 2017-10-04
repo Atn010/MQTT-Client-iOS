@@ -9,7 +9,9 @@
 import UIKit
 import SwiftyPlistManager
 
-class LoginVC: UIViewController {
+
+class LoginVC: UIViewController{
+
 	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var password: UITextField!
 	
@@ -26,8 +28,28 @@ class LoginVC: UIViewController {
 	
 	@IBAction func Logon(_ sender: Any) {
 		
-		if(username.text!.characters.count >= 4){
-			if(password.text!.characters.count >= 4){
+		print(username.text!)
+		print(password.text!)
+		
+		if(username.text!.characters.count > 4){
+			if(password.text!.characters.count > 4){
+				let data = Data.shared
+
+				print(username.text!)
+				print(password.text!)
+				
+				data.clientID = username.text!
+				data.clientPass = password.text!
+				data.verificationStatus = false
+				
+				print("Username: " + data.clientID + " | Password: " + data.clientPass)
+				
+				print(username.text!)
+				print(password.text!)
+				
+				performSegue(withIdentifier: "Change", sender: "LoginVC")
+				
+				
 				
 			}
 		}

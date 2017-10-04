@@ -22,20 +22,25 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="Logon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zQQ-Az-27a"/>
-                                    <segue destination="4yq-fO-NpA" kind="show" id="eLd-lP-C5K"/>
+                                    <segue destination="4yq-fO-NpA" kind="show" identifier="Change" id="pfa-Up-UfV"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Username" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yo1-ho-Czt">
+                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Username" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yo1-ho-Czt">
                                 <rect key="frame" x="42" y="59" width="237" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Password" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lzl-j2-5sm">
+                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Password" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lzl-j2-5sm">
                                 <rect key="frame" x="42" y="136" width="237" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -72,16 +77,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Hnn-Q8-uF0">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="G0f-Av-yxF" style="IBUITableViewCellStyleDefault" id="Hnn-Q8-uF0">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hnn-Q8-uF0" id="ha7-a1-4Fu">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGA-x1-tXG">
-                                            <rect key="frame" x="15" y="11" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G0f-Av-yxF">
+                                            <rect key="frame" x="16" y="0.0" width="289" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -127,40 +132,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl4-dh-xiX">
-                                <rect key="frame" x="137" y="246" width="46" height="30"/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="Logon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rKb-JN-5Tw"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="Username" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2E-XJ-dxV">
+                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Username" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2E-XJ-dxV">
                                 <rect key="frame" x="42" y="80" width="237" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="Password" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-ua-qui">
+                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Password" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MpT-ua-qui">
                                 <rect key="frame" x="42" y="157" width="237" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="password"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl4-dh-xiX">
+                                <rect key="frame" x="127" y="246" width="67" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="Logon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rKb-JN-5Tw"/>
+                                    <action selector="onSubmit:" destination="qfc-kP-sIy" eventType="touchUpInside" id="Gze-iQ-c1M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="i2E-XJ-dxV" firstAttribute="trailing" secondItem="MpT-ua-qui" secondAttribute="trailing" id="9Hl-Jt-v66"/>
+                            <constraint firstItem="i2E-XJ-dxV" firstAttribute="top" secondItem="lY5-Nh-LCl" secondAttribute="top" constant="60" id="AnX-Io-wIF"/>
                             <constraint firstItem="MpT-ua-qui" firstAttribute="top" secondItem="i2E-XJ-dxV" secondAttribute="bottom" constant="47" id="Fej-b4-wEb"/>
+                            <constraint firstItem="lY5-Nh-LCl" firstAttribute="trailing" secondItem="MpT-ua-qui" secondAttribute="trailing" constant="41" id="KgR-Lf-hqe"/>
+                            <constraint firstItem="lY5-Nh-LCl" firstAttribute="trailing" secondItem="dl4-dh-xiX" secondAttribute="trailing" constant="126" id="Nau-8z-1e0"/>
+                            <constraint firstItem="i2E-XJ-dxV" firstAttribute="leading" secondItem="lY5-Nh-LCl" secondAttribute="leading" constant="42" id="OOf-Jx-RTl"/>
+                            <constraint firstItem="dl4-dh-xiX" firstAttribute="top" secondItem="MpT-ua-qui" secondAttribute="bottom" constant="59" id="Rjy-Hc-RGF"/>
+                            <constraint firstItem="dl4-dh-xiX" firstAttribute="leading" secondItem="lY5-Nh-LCl" secondAttribute="leading" constant="127" id="RkA-ji-xHe"/>
+                            <constraint firstItem="lY5-Nh-LCl" firstAttribute="bottom" secondItem="dl4-dh-xiX" secondAttribute="bottom" constant="155" id="TzH-rD-QIA"/>
+                            <constraint firstItem="lY5-Nh-LCl" firstAttribute="trailing" secondItem="i2E-XJ-dxV" secondAttribute="trailing" constant="41" id="b9m-TD-nF5"/>
+                            <constraint firstItem="MpT-ua-qui" firstAttribute="top" secondItem="i2E-XJ-dxV" secondAttribute="bottom" constant="47" id="bEb-am-GvV"/>
+                            <constraint firstItem="MpT-ua-qui" firstAttribute="leading" secondItem="lY5-Nh-LCl" secondAttribute="leading" constant="42" id="eNn-VT-xx1"/>
                             <constraint firstItem="i2E-XJ-dxV" firstAttribute="leading" secondItem="MpT-ua-qui" secondAttribute="leading" id="uao-j9-ao2"/>
                             <constraint firstItem="MpT-ua-qui" firstAttribute="centerX" secondItem="dl4-dh-xiX" secondAttribute="centerX" id="w3j-f4-UkI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lY5-Nh-LCl"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Transfer" id="hRf-me-p67"/>
+                    <connections>
+                        <outlet property="amount" destination="MpT-ua-qui" id="bpl-iY-CaN"/>
+                        <outlet property="recepient" destination="i2E-XJ-dxV" id="3nb-33-HAI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W74-IA-8rr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1714" y="340"/>
+            <point key="canvasLocation" x="1713.75" y="340"/>
         </scene>
     </scenes>
 </document>

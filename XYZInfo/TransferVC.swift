@@ -8,8 +8,12 @@
 
 import UIKit
 
-class TransferVC: UIViewController {
 
+
+class TransferVC: UIViewController {
+	@IBOutlet weak var recepient: UITextField!
+	@IBOutlet weak var amount: UITextField!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +25,12 @@ class TransferVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+	@IBAction func onSubmit(_ sender: Any) {
+		recepient.text = ""
+		amount.text = ""
+		
+	}
+	
     /*
     // MARK: - Navigation
 

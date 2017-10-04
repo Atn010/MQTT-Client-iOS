@@ -13,6 +13,7 @@ class OverviewTVC: UITableViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		print("Username: " + Data.shared.clientID + " | Password: " + Data.shared.clientPass)
 		let path = Bundle.main.path(forResource: "List", ofType: "plist")
 		if let tempArray = NSArray(contentsOfFile: path!){
 			myArray = tempArray as! [[String:String]]

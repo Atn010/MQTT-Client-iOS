@@ -12,16 +12,18 @@ import SwiftyPlistManager
 
 class senderLogic: NSObject {
 	
-	let clientID: String = Data.init().clientID
+	let data = Data.shared
 	
-	let topicVerificationRequest: String = "verification\request\\" + Data.init().clientID
-	let topicVerificationResponse: String = "verification\response\\" + Data.init().clientID
+	let clientID: String = Data.shared.clientID
 	
-	let topicTransactionRequest: String = "transaction\request\\" + Data.init().clientID
-	let topicTransactionResponse: String = "transaction\response\\" + Data.init().clientID
+	let topicVerificationRequest: String = "verification\request\\" + Data.shared.clientID
+	let topicVerificationResponse: String = "verification\response\\" + Data.shared.clientID
 	
-	let topicTransferRequest: String = "transfer\request\\" + Data.init().clientID
-	let topicTransferResponse: String = "transfer\response\\" + Data.init().clientID
+	let topicTransactionRequest: String = "transaction\request\\" + Data.shared.clientID
+	let topicTransactionResponse: String = "transaction\response\\" + Data.shared.clientID
+	
+	let topicTransferRequest: String = "transfer\request\\" + Data.shared.clientID
+	let topicTransferResponse: String = "transfer\response\\" + Data.shared.clientID
 	
 	let Qos = CocoaMQTTQOS(rawValue: 1)
 	

@@ -9,21 +9,22 @@
 import UIKit
 
 class Data: NSObject {
-	override init() {
-		clientID = Data.init().clientID
-		clientPass = Data.init().clientPass
-		verificationStatus = Data.init().verificationStatus
-		
+	static let shared = Data()
+	
+	private override init() {
+		print("Object initialized")
 	}
-
 	
 	init(username: String, password: String) {
 		clientID = username
 		clientPass = password
 		verificationStatus = false
 	}
-	var clientID: String
-	var clientPass: String
-	var	verificationStatus: Bool
+	
+	
+	
+	var clientID: String = ""
+	var clientPass: String = ""
+	var	verificationStatus: Bool = false
 
 }
