@@ -22,7 +22,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="Logon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zQQ-Az-27a"/>
-                                    <segue destination="4yq-fO-NpA" kind="show" identifier="Change" id="pfa-Up-UfV"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Username" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yo1-ho-Czt">
@@ -63,6 +62,7 @@
                         <outlet property="Username" destination="yo1-ho-Czt" id="vvW-yk-MNN"/>
                         <outlet property="password" destination="Lzl-j2-5sm" id="aBA-yD-hAd"/>
                         <outlet property="username" destination="yo1-ho-Czt" id="Tay-Wk-vJh"/>
+                        <segue destination="4yq-fO-NpA" kind="show" identifier="Change" id="6BN-EP-PHz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

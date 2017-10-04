@@ -26,6 +26,8 @@ class LoginVC: UIViewController{
 		// Dispose of any resources that can be recreated.
 	}
 	
+	
+	
 	@IBAction func Logon(_ sender: Any) {
 		
 		print(username.text!)
@@ -47,7 +49,9 @@ class LoginVC: UIViewController{
 				print(username.text!)
 				print(password.text!)
 				
-				performSegue(withIdentifier: "Change", sender: "LoginVC")
+				//prepare(for: "Change", sender: "LoginVC")
+				
+				performSegue(withIdentifier: "Change", sender: nil)
 				
 				
 				
