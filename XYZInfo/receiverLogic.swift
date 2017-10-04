@@ -23,7 +23,9 @@ class receiverLogic: CocoaMQTTDelegate {
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
-		
+	
+		var Topic = message.topic
+		var Message = message.payload
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
