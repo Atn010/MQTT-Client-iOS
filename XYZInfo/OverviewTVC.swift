@@ -10,11 +10,14 @@ import UIKit
 import SwiftyPlistManager
 
 class OverviewTVC: UITableViewController{
-	var itemArray: [String] = []
+	var itemArray: [String] = Data.shared.transferList
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		print("Username: " + Data.shared.clientID + " | Password: " + Data.shared.clientPass)
+		if itemArray .isEmpty{
+			itemArray.append("Emptyness")
+		}
+		//print("Username: " + Data.shared.clientID + " | Password: " + Data.shared.clientPass)
 		/*
 		if let URL = Bundle.main.url(forResource: "List", withExtension: "plist"){
 			if let transferList = NSArray(contentsOfURL: URL) as? [String]{
@@ -23,12 +26,12 @@ class OverviewTVC: UITableViewController{
 				}
 			}
 		}
-		*/
+
 		let path = Bundle.main.path(forResource: "List", ofType: "plist")
 		if let tempArray = NSArray(contentsOfFile: path!){
 			itemArray = tempArray as! [String]
 		}
-		
+		*/
 
     }
 

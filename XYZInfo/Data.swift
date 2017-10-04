@@ -22,7 +22,7 @@ class Data: NSObject {
 	}
 	
 	
-	
+	var transferList:[String] = []
 	var clientID: String = ""
 	var clientPass: String = ""
 	var	verificationStatus: Bool = false

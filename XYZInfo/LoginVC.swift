@@ -30,24 +30,24 @@ class LoginVC: UIViewController{
 	
 	@IBAction func Logon(_ sender: Any) {
 		
-		print(username.text!)
-		print(password.text!)
+		//print(username.text!)
+		//print(password.text!)
 		
 		if(username.text!.characters.count > 4){
 			if(password.text!.characters.count > 4){
 				let data = Data.shared
 
-				print(username.text!)
-				print(password.text!)
+				//print(username.text!)
+				//print(password.text!)
 				
 				data.clientID = username.text!
 				data.clientPass = password.text!
 				data.verificationStatus = false
 				
-				print("Username: " + data.clientID + " | Password: " + data.clientPass)
+				//print("Username: " + data.clientID + " | Password: " + data.clientPass)
 				
-				print(username.text!)
-				print(password.text!)
+				//print(username.text!)
+				//print(password.text!)
 				
 				//prepare(for: "Change", sender: "LoginVC")
 				
