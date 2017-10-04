@@ -9,21 +9,24 @@
 import UIKit
 
 class OverviewTVC: UITableViewController{
-	var myArray: [[String:String]] = []
+	var itemArray: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		print("Username: " + Data.shared.clientID + " | Password: " + Data.shared.clientPass)
+		/*
+		if let URL = Bundle.main.url(forResource: "List", withExtension: "plist"){
+			if let transferList = NSArray(contentsOfURL: URL) as? [String]{
+				for item in transferList{
+					itemArray.append(item)
+				}
+			}
+		}
+		*/
 		let path = Bundle.main.path(forResource: "List", ofType: "plist")
 		if let tempArray = NSArray(contentsOfFile: path!){
-			myArray = tempArray as! [[String:String]]
+			itemArray = tempArray as! [String]
 		}
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,16 +43,14 @@ class OverviewTVC: UITableViewController{
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myArray.count
+        return itemArray.count
     }
 
 	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        // Configure the cell...
-		cell.textLabel?.text = myArray[indexPath.row]["transfer"]
-
-        return cell
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for:indexPath)
+		cell.textLabel?.text = itemArray[indexPath.row]
+		return cell
     }
 
 
