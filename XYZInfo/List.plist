@@ -3,5 +3,6 @@
 <plist version="1.0">
 <array>
 	<string>This is an Item</string>
+	<string>This is a new one</string>
 </array>
 </plist>

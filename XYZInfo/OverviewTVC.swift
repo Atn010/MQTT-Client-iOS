@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyPlistManager
 
 class OverviewTVC: UITableViewController{
 	var itemArray: [String] = []
@@ -27,6 +28,8 @@ class OverviewTVC: UITableViewController{
 		if let tempArray = NSArray(contentsOfFile: path!){
 			itemArray = tempArray as! [String]
 		}
+		
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,9 +53,17 @@ class OverviewTVC: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for:indexPath)
 		cell.textLabel?.text = itemArray[indexPath.row]
+		writeToPlist(indexValue: itemArray.count)
 		return cell
     }
 
+	func writeToPlist(indexValue: Int){
+		let path = Bundle.main.path(forResource: "List", ofType: "plist")
+		if let plistArray = NSMutableArray(contentsOfFile: path!){
+			plistArray.add("A new Text!")
+			//plistArray.write(toFile: path!, atomically: false)
+		}
+	}
 
     /*
     // Override to support conditional editing of the table view.
