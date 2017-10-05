@@ -51,10 +51,15 @@ class senderLogic: NSObject {
 		dateFormatter.dateFormat = "dd/MM/yy HH:mm"
 		let dateTime = dateFormatter.string(from: nowDate)
 		
-		let payload = dateTime+"~"+Data.shared.clientID+"~"+Data.shared.clientPass
-		
+		let payload: String = dateTime+"~"+Data.shared.clientID+"~"+Data.shared.clientPass
 		
 		let Message = CocoaMQTTMessage(topic: topicVerificationRequest, string: payload, qos: Qos!, retained: false, dup: false)
+		
+		Data.shared.verificationStatus = false
+		Data.shared.currentVerificationDate = dateTime
+		
+		print(payload)
+		print(Message)
 		mqtt.publish(Message)
 	}
 	
