@@ -26,12 +26,14 @@ class TransferVC: UIViewController {
     }
     
 	@IBAction func onSubmit(_ sender: Any) {
+		senderLogic().transferRequest(Recipient: recepient.text!, Amount: amount.text!)
 		recepient.text = ""
 		amount.text = ""
 		
 	}
 	
-    /*
+
+	/*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
