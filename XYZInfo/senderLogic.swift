@@ -14,7 +14,7 @@ class senderLogic: NSObject {
 	static let shared = senderLogic()
 	
 	private override init() {
-		print("Object initialized")
+		print("senderLogic Object initialized")
 	}
 	
 	let clientID: String = Data.shared.clientID
@@ -29,7 +29,6 @@ class senderLogic: NSObject {
 	let topicTransferRequest: String = "transfer/request/" + Data.shared.clientID
 	let topicTransferResponse: String = "transfer/response/" + Data.shared.clientID
 	
-	let Qos = CocoaMQTTQOS(rawValue: 1)
 	let mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
 	
 	
@@ -59,8 +58,9 @@ class senderLogic: NSObject {
 	}
 	
 	func publishMessage(Topic: String, Payload: String){
-		let Message = CocoaMQTTMessage(topic: Topic, string: Payload, qos: Qos!, retained: false, dup: false)
-		mqtt.publish(Message)
+		//let Message = CocoaMQTTMessage(topic: Topic, string: Payload, qos: CocoaMQTTQOS.qos1, retained: false)
+		mqtt.publish(Topic, withString: Payload, qos: CocoaMQTTQOS.qos1, retained: false, dup: false)
+		print("published to topic: "+Topic+" | And Payload: "+Payload)
 	}
 	
 	func verificationRequest(){
@@ -72,11 +72,13 @@ class senderLogic: NSObject {
 		let dateTime = dateFormatter.string(from: nowDate)
 		
 		let payload: String = dateTime+"~"+Data.shared.clientID+"~"+Data.shared.clientPass
-		
+		print ("Message Configured with " + payload)
 		publishMessage(Topic: topicVerificationRequest,Payload: payload)
 		
 		Data.shared.verificationStatus = false
 		Data.shared.currentVerificationDate = dateTime
+		
+		
 	}
 	
 	func transactionRequest(){

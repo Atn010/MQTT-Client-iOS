@@ -12,7 +12,7 @@ class Data: NSObject {
 	static let shared = Data()
 	
 	private override init() {
-		print("Object initialized")
+		print("Data Object initialized")
 	}
 	
 	var transferList:[String] = []
