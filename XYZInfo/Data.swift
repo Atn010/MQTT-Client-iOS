@@ -21,6 +21,7 @@ class Data: NSObject {
 	var clientPass: String = ""
 	
 	var currentVerificationDate : String = ""
+	var currentTransferDate : String = ""
 	var	verificationStatus: Bool = false
 	
 	var currentTransferDate : String = ""
