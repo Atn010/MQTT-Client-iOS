@@ -15,19 +15,15 @@ class Data: NSObject {
 		print("Object initialized")
 	}
 	
-	init(username: String, password: String) {
-		clientID = username
-		clientPass = password
-		verificationStatus = false
-	}
-	
-	
 	var transferList:[String] = []
+	
 	var clientID: String = ""
 	var clientPass: String = ""
 	
 	var currentVerificationDate : String = ""
-	var currentTransferDate : String = ""
 	var	verificationStatus: Bool = false
+	
+	var currentTransferDate : String = ""
+	var transferStatus: Bool = false
 
 }
