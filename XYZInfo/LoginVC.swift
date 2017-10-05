@@ -37,7 +37,7 @@ class LoginVC: UIViewController{
 
 				Data.shared.clientID = username.text!
 				Data.shared.clientPass = password.text!
-				Data.shared.verificationStatus = false
+				Data.shared.verificationStatus = 0
 				
 				if(senderLogic.shared.isConnected() == false){
 					senderLogic.shared.connect()
@@ -46,10 +46,17 @@ class LoginVC: UIViewController{
 				
 				if(senderLogic.shared.isConnected() == true){
 					var timeout = 0
+					
+					if(senderLogic.shared.isConnected() == false){
+						senderLogic.shared.connect()
+					}
 				
 					while(timeout<=30){
-						if(Data.shared.transferStatus == true){
+						if(Data.shared.transferStatus == 1 ){
 							performSegue(withIdentifier: "Change", sender: nil)
+						}
+						if(Data.shared.transferStatus == 2 ){
+							print("Failed")
 						}
 						timeout = timeout+1
 						sleep(1)

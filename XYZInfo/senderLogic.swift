@@ -75,7 +75,7 @@ class senderLogic: NSObject {
 		print ("Message Configured with " + payload)
 		publishMessage(Topic: topicVerificationRequest,Payload: payload)
 		
-		Data.shared.verificationStatus = false
+		Data.shared.verificationStatus = 0
 		Data.shared.currentVerificationDate = dateTime
 		
 		
@@ -96,7 +96,7 @@ class senderLogic: NSObject {
 		
 		publishMessage(Topic: topicVerificationRequest,Payload: payload)
 		
-		Data.shared.transferStatus = false
+		Data.shared.transferStatus = 0
 		Data.shared.currentTransferDate = dateTime
 	}
 	
