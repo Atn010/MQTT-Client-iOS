@@ -30,28 +30,30 @@ class LoginVC: UIViewController{
 	
 	@IBAction func Logon(_ sender: Any) {
 		
-		//print(username.text!)
-		//print(password.text!)
+
 		
 		if(username.text!.characters.count > 4){
 			if(password.text!.characters.count > 4){
-				let data = Data.shared
 
-				//print(username.text!)
-				//print(password.text!)
+				Data.shared.clientID = username.text!
+				Data.shared.clientPass = password.text!
+				Data.shared.verificationStatus = false
 				
-				data.clientID = username.text!
-				data.clientPass = password.text!
-				data.verificationStatus = false
+				senderLogic.shared.connect()
+				senderLogic.shared.verificationRequest()
 				
-				var timeout = 0
+				if(senderLogic.shared.isConnected() == true){
+					var timeout = 0
 				
-				while(timeout<=30){
-					if(Data.shared.transferStatus == true){
-						performSegue(withIdentifier: "Change", sender: nil)
+					while(timeout<=30){
+						if(Data.shared.transferStatus == true){
+							performSegue(withIdentifier: "Change", sender: nil)
+						}
+						timeout = timeout+1
+						sleep(1)
 					}
-					timeout = timeout+1
-					sleep(1)
+				}else{
+					print("Not connected")
 				}
 				
 			}
