@@ -39,7 +39,9 @@ class LoginVC: UIViewController{
 				Data.shared.clientPass = password.text!
 				Data.shared.verificationStatus = false
 				
-				senderLogic.shared.connect()
+				if(senderLogic.shared.isConnected() == false){
+					senderLogic.shared.connect()
+				}
 				senderLogic.shared.verificationRequest()
 				
 				if(senderLogic.shared.isConnected() == true){
