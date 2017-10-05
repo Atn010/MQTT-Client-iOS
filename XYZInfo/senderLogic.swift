@@ -11,18 +11,23 @@ import CocoaMQTT
 //import SwiftyPlistManager
 
 class senderLogic: NSObject {
+	static let shared = senderLogic()
 	
+	private override init() {
+		print("Object initialized")
+	}
 	
 	let clientID: String = Data.shared.clientID
 	
-	let topicVerificationRequest: String = "verification\request\\" + Data.shared.clientID
-	let topicVerificationResponse: String = "verification\response\\" + Data.shared.clientID
+	let topicVerificationRequest: String = "verification/request/" + Data.shared.clientID
+	let topicVerificationResponse: String = "verification/response/" + Data.shared.clientID
 	
-	let topicTransactionRequest: String = "transaction\request\\" + Data.shared.clientID
-	let topicTransactionResponse: String = "transaction\response\\" + Data.shared.clientID
+	let topicTransactionRequest: String = "transaction/request/" + Data.shared.clientID
+	let topicTransactionList: String = "transaction/list/" + Data.shared.clientID
+	let topicTransactionMoney: String = "transaction/money/" + Data.shared.clientID
 	
-	let topicTransferRequest: String = "transfer\request\\" + Data.shared.clientID
-	let topicTransferResponse: String = "transfer\response\\" + Data.shared.clientID
+	let topicTransferRequest: String = "transfer/request/" + Data.shared.clientID
+	let topicTransferResponse: String = "transfer/response/" + Data.shared.clientID
 	
 	let Qos = CocoaMQTTQOS(rawValue: 1)
 	let mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
@@ -34,13 +39,22 @@ class senderLogic: NSObject {
 		mqtt.cleanSession = false
 		mqtt.allowUntrustCACertificate = true
 		mqtt.keepAlive = 60
-		mqtt.delegate = self as? CocoaMQTTDelegate
+		mqtt.delegate = receiverLogic()
 		mqtt.connect()
-		
 		mqtt.subscribe(topicVerificationResponse)
-		mqtt.subscribe(topicTransactionResponse)
+		mqtt.subscribe(topicTransactionList)
 		mqtt.subscribe(topicTransferResponse)
+		mqtt.subscribe(topicTransactionMoney)
 		
+	}
+	
+	func isConnected() -> Bool{
+		print(mqtt.connState.rawValue)
+		if (mqtt.connState.rawValue == 1){
+			return true
+		}
+		
+		return false
 		
 	}
 	
