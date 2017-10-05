@@ -50,6 +50,7 @@ class senderLogic: NSObject {
 	}
 	
 	func verificationRequest(){
+		
 		let dateFormatter = DateFormatter()
 		let nowDate = Date()
 		
