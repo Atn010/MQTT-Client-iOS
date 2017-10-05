@@ -8,11 +8,10 @@
 
 import UIKit
 import CocoaMQTT
-import SwiftyPlistManager
+//import SwiftyPlistManager
 
 class senderLogic: NSObject {
 	
-	let data = Data.shared
 	
 	let clientID: String = Data.shared.clientID
 	
@@ -26,10 +25,10 @@ class senderLogic: NSObject {
 	let topicTransferResponse: String = "transfer\response\\" + Data.shared.clientID
 	
 	let Qos = CocoaMQTTQOS(rawValue: 1)
+	let mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
 	
 	
 	func connect() {
-		let mqtt = CocoaMQTT(clientID: clientID, host: "192.168.56.101", port: 1883)
 		mqtt.autoReconnect = true
 		mqtt.autoReconnectTimeInterval = 3
 		mqtt.cleanSession = false
@@ -38,17 +37,25 @@ class senderLogic: NSObject {
 		mqtt.delegate = self as? CocoaMQTTDelegate
 		mqtt.connect()
 		
+		mqtt.subscribe(topicVerificationResponse)
+		mqtt.subscribe(topicTransactionResponse)
+		mqtt.subscribe(topicTransferResponse)
+		
+		
 	}
 	
 	func verificationRequest(){
-		//let Date = DateFormatter().short
-		//let Time = TimeFormatter().short
+		let dateFormatter = DateFormatter()
+		let nowDate = Date()
 		
-		//configure the message into: day/month/year hour:minute~username~password
-		//EX: 31/12/17 03:02~admin~admin
+		dateFormatter.dateFormat = "dd/MM/yy HH:mm"
+		let dateTime = dateFormatter.string(from: nowDate)
+		
+		let payload = dateTime+"~"+Data.shared.clientID+"~"+Data.shared.clientPass
 		
 		
-		let message = CocoaMQTTMessage(topic: topicVerificationRequest, string: "request", qos: Qos!, retained: false, dup: false)
+		let Message = CocoaMQTTMessage(topic: topicVerificationRequest, string: payload, qos: Qos!, retained: false, dup: false)
+		mqtt.publish(Message)
 	}
 	
 	
