@@ -44,16 +44,15 @@ class LoginVC: UIViewController{
 				data.clientPass = password.text!
 				data.verificationStatus = false
 				
-				//print("Username: " + data.clientID + " | Password: " + data.clientPass)
+				var timeout = 0
 				
-				//print(username.text!)
-				//print(password.text!)
-				
-				//prepare(for: "Change", sender: "LoginVC")
-				
-				performSegue(withIdentifier: "Change", sender: nil)
-				
-				
+				while(timeout<=30){
+					if(Data.shared.transferStatus == true){
+						performSegue(withIdentifier: "Change", sender: nil)
+					}
+					timeout = timeout+1
+					sleep(1)
+				}
 				
 			}
 		}
