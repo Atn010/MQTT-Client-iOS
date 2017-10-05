@@ -44,6 +44,11 @@ class senderLogic: NSObject {
 		
 	}
 	
+	func publishMessage(Topic: String, Payload: String){
+		let Message = CocoaMQTTMessage(topic: Topic, string: Payload, qos: Qos!, retained: false, dup: false)
+		mqtt.publish(Message)
+	}
+	
 	func verificationRequest(){
 		let dateFormatter = DateFormatter()
 		let nowDate = Date()
@@ -53,16 +58,30 @@ class senderLogic: NSObject {
 		
 		let payload: String = dateTime+"~"+Data.shared.clientID+"~"+Data.shared.clientPass
 		
-		let Message = CocoaMQTTMessage(topic: topicVerificationRequest, string: payload, qos: Qos!, retained: false, dup: false)
+		publishMessage(Topic: topicVerificationRequest,Payload: payload)
 		
 		Data.shared.verificationStatus = false
 		Data.shared.currentVerificationDate = dateTime
-		
-		print(payload)
-		print(Message)
-		mqtt.publish(Message)
 	}
 	
+	func transactionRequest(){
+		publishMessage(Topic: topicTransactionRequest, Payload: "request")
+	}
+	
+	func transferRequest(Recipient: String, Amount: String){
+		let dateFormatter = DateFormatter()
+		let nowDate = Date()
+		
+		dateFormatter.dateFormat = "dd/MM/yy HH:mm"
+		let dateTime = dateFormatter.string(from: nowDate)
+		
+		let payload: String = dateTime+"~"+Data.shared.clientID+"~"+Recipient+"~"+Amount
+		
+		publishMessage(Topic: topicVerificationRequest,Payload: payload)
+		
+		Data.shared.transferStatus = false
+		Data.shared.currentTransferDate = dateTime
+	}
 	
 	
 	
