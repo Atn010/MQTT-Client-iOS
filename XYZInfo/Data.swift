@@ -15,7 +15,8 @@ class Data: NSObject {
 		print("Data Object initialized")
 	}
 	
-	var transferList:[String] = []
+	var transferList: [String] = []
+	var moneyAmount: String = ""
 	
 	var clientID: String = ""
 	var clientPass: String = ""

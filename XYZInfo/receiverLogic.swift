@@ -50,10 +50,24 @@ class receiverLogic: CocoaMQTTDelegate {
 			
 		}
 		if (Topic == senderLogic.shared.topicTransactionMoney){
-			
+			Data.shared.moneyAmount = payload
 		}
 		if (Topic == senderLogic.shared.topicTransferResponse){
+			let Message = payload.components(separatedBy: "~")
 			
+			let statusDate = Message[0]
+			let statusMessage = Message[1]
+			
+			if(statusDate == Data.shared.currentVerificationDate){
+				if(statusMessage == "confirmed"){
+					Data.shared.transferStatus = 1
+				}
+				
+				if(statusMessage == "failed"){
+					Data.shared.transferStatus = 2
+				}
+				
+			}
 		}
 		
 	}
