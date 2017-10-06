@@ -24,8 +24,38 @@ class receiverLogic: CocoaMQTTDelegate {
 	
 	func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
 	
-		var Topic = message.topic
-		var Message = message.payload
+		let Topic: String = message.topic
+		let payload: String = message.string!
+		
+		if (Topic == senderLogic.shared.topicVerificationResponse){
+			let Message = payload.components(separatedBy: "~")
+			
+			let statusDate = Message[0]
+			let statusMessage = Message[1]
+			
+			if(statusDate == Data.shared.currentVerificationDate){
+				if(statusMessage == "confirmed"){
+					Data.shared.verificationStatus = 1
+				}
+
+				if(statusMessage == "failed"){
+					Data.shared.verificationStatus = 2
+				}
+				
+			}
+			
+			
+		}
+		if (Topic == senderLogic.shared.topicTransactionList){
+			
+		}
+		if (Topic == senderLogic.shared.topicTransactionMoney){
+			
+		}
+		if (Topic == senderLogic.shared.topicTransferResponse){
+			
+		}
+		
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
