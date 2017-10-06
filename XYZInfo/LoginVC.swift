@@ -46,9 +46,9 @@ class LoginVC: UIViewController{
 				}
 				
 				senderLogic.shared.verificationRequest()
-				var timeout = 0
 				
 				if(senderLogic.shared.isConnected() == true){
+					var timeout = 0
 					
 					if(senderLogic.shared.isConnected() == false){
 						senderLogic.shared.connect()
@@ -65,16 +65,19 @@ class LoginVC: UIViewController{
 						timeout = timeout+1
 						sleep(1)
 					}
+					
+					if (timeout >= 30){
+						print("Timeout, please try again later")
+						senderLogic.shared.mqtt.disconnect()
+						
+					}
+					
 				}else{
 					print("Not connected")
 					senderLogic.shared.mqtt.disconnect()
 				}
 				
-				if (timeout >= 30){
-					print("Timeout, please try again later")
-					senderLogic.shared.mqtt.disconnect()
 				
-				}
 				
 			}
 		}
