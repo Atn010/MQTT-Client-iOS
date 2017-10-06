@@ -26,5 +26,7 @@ class Data: NSObject {
 	
 	var currentTransferDate : String = ""
 	var transferStatus: Int = 0
+	
+	var notReady : Bool = true
 
 }

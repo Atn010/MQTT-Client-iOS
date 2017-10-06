@@ -42,25 +42,43 @@ class LoginVC: UIViewController{
 				senderLogic.shared.configure()
 				
 				if(senderLogic.shared.isConnected() == false){
+					print("not Connected")
 					senderLogic.shared.connect()
 				}
-				
-				senderLogic.shared.verificationRequest()
-				
-				if(senderLogic.shared.isConnected() == true){
-					var timeout = 0
+				var timeout = 0
+				while(timeout<=60){
+					if(senderLogic.shared.mqtt.connState.rawValue == 2){
+						break
+					}
 					
+					timeout = timeout+1
+					sleep(1)
+					print ("waiting ", +timeout)
+				}
+				if(senderLogic.shared.isConnected() == true){
+				
+					timeout = 0
 					if(senderLogic.shared.isConnected() == false){
+						print("not connected, attempt to re connect")
 						senderLogic.shared.connect()
 					}
-				
 					while(timeout<=30){
-						if(Data.shared.transferStatus == 1 ){
-							performSegue(withIdentifier: "Change", sender: nil)
+						if(senderLogic.shared.isConnected() == false){
+							print("not connected, attempt to re connect")
+							senderLogic.shared.connect()
 						}
-						if(Data.shared.transferStatus == 2 ){
-							print("Failed")
-							senderLogic.shared.mqtt.disconnect()
+						if(Data.shared.notReady){
+
+						}else{
+							senderLogic.shared.verificationRequest()
+							
+							if(Data.shared.transferStatus == 1 ){
+								performSegue(withIdentifier: "Change", sender: nil)
+							}
+							if(Data.shared.transferStatus == 2 ){
+								print("Failed")
+								senderLogic.shared.mqtt.disconnect()
+							}
 						}
 						timeout = timeout+1
 						sleep(1)

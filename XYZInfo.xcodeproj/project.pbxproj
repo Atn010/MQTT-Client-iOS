@@ -17,7 +17,6 @@
 		5E52EE9F1F81FE0E00EE44AB /* senderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */; };
 		5E52EEA31F82241200EE44AB /* OverviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EEA21F82241200EE44AB /* OverviewTVC.swift */; };
 		5E52EEA51F82246300EE44AB /* TransferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EEA41F82246300EE44AB /* TransferVC.swift */; };
-		5E52EEA71F82305B00EE44AB /* List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E52EEA61F82305B00EE44AB /* List.plist */; };
 		9EF58971D0EE7ABB70D394DB /* Pods_XYZInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF88A22EC8D8C77D258DDA8 /* Pods_XYZInfo.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +36,6 @@
 		5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = senderLogic.swift; sourceTree = "<group>"; };
 		5E52EEA21F82241200EE44AB /* OverviewTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTVC.swift; sourceTree = "<group>"; };
 		5E52EEA41F82246300EE44AB /* TransferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferVC.swift; sourceTree = "<group>"; };
-		5E52EEA61F82305B00EE44AB /* List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = List.plist; sourceTree = "<group>"; };
 		7BF88A22EC8D8C77D258DDA8 /* Pods_XYZInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XYZInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,7 +83,6 @@
 				5E0FF8461F81DB730010FEA7 /* XYZInfo-Bridging-Header.h */,
 				5E52EE9C1F81FBAA00EE44AB /* receiverLogic.swift */,
 				5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */,
-				5E52EEA61F82305B00EE44AB /* List.plist */,
 				5E19AF151F838D7E0054CDA4 /* Data.swift */,
 			);
 			path = XYZInfo;
@@ -173,7 +170,6 @@
 			files = (
 				5E3C75621F81CD7F00644DA9 /* LaunchScreen.storyboard in Resources */,
 				5E3C755F1F81CD7F00644DA9 /* Assets.xcassets in Resources */,
-				5E52EEA71F82305B00EE44AB /* List.plist in Resources */,
 				5E3C755D1F81CD7F00644DA9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,7 +406,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "XYZInfo/XYZInfo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -435,7 +431,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "XYZInfo/XYZInfo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
