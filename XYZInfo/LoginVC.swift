@@ -39,9 +39,12 @@ class LoginVC: UIViewController{
 				Data.shared.clientPass = password.text!
 				Data.shared.verificationStatus = 0
 				
+				senderLogic.shared.configure()
+				
 				if(senderLogic.shared.isConnected() == false){
 					senderLogic.shared.connect()
 				}
+				
 				senderLogic.shared.verificationRequest()
 				
 				if(senderLogic.shared.isConnected() == true){
@@ -57,13 +60,24 @@ class LoginVC: UIViewController{
 						}
 						if(Data.shared.transferStatus == 2 ){
 							print("Failed")
+							senderLogic.shared.mqtt.disconnect()
 						}
 						timeout = timeout+1
 						sleep(1)
 					}
+					
+					if (timeout >= 30){
+						print("Timeout, please try again later")
+						senderLogic.shared.mqtt.disconnect()
+						
+					}
+					
 				}else{
 					print("Not connected")
+					senderLogic.shared.mqtt.disconnect()
 				}
+				
+				
 				
 			}
 		}

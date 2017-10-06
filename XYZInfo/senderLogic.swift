@@ -17,20 +17,32 @@ class senderLogic: NSObject {
 		print("senderLogic Object initialized")
 	}
 	
-	let clientID: String = Data.shared.clientID
 	
-	let topicVerificationRequest: String = "verification/request/" + Data.shared.clientID
-	let topicVerificationResponse: String = "verification/response/" + Data.shared.clientID
+	var topicVerificationRequest: String = ""
+	var topicVerificationResponse: String = ""
 	
-	let topicTransactionRequest: String = "transaction/request/" + Data.shared.clientID
-	let topicTransactionList: String = "transaction/list/" + Data.shared.clientID
-	let topicTransactionMoney: String = "transaction/money/" + Data.shared.clientID
+	var topicTransactionRequest: String = ""
+	var topicTransactionList: String = ""
+	var topicTransactionMoney: String = ""
 	
-	let topicTransferRequest: String = "transfer/request/" + Data.shared.clientID
-	let topicTransferResponse: String = "transfer/response/" + Data.shared.clientID
+	var topicTransferRequest: String = ""
+	var topicTransferResponse: String = ""
 	
-	let mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
+	var mqtt: CocoaMQTT = CocoaMQTT(clientID: Data.shared.clientID)
 	
+	func configure(){
+		topicVerificationRequest = "verification/request/" + Data.shared.clientID
+		topicVerificationResponse = "verification/response/" + Data.shared.clientID
+		
+		topicTransactionRequest = "transaction/request/" + Data.shared.clientID
+		topicTransactionList = "transaction/list/" + Data.shared.clientID
+		topicTransactionMoney = "transaction/money/" + Data.shared.clientID
+		
+		topicTransferRequest = "transfer/request/" + Data.shared.clientID
+		topicTransferResponse = "transfer/response/" + Data.shared.clientID
+		
+		mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
+	}
 	
 	func connect() {
 		mqtt.autoReconnect = true
