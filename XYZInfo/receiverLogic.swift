@@ -47,7 +47,15 @@ class receiverLogic: CocoaMQTTDelegate {
 			
 		}
 		if (Topic == senderLogic.shared.topicTransactionList){
+			Data.shared.transferList.removeAll()
 			
+			var rawList = payload
+			rawList.removeFirst()
+			rawList.removeLast()
+			
+			let transferlist = rawList.components(separatedBy: ", ")
+			
+			Data.shared.transferList = transferlist
 		}
 		if (Topic == senderLogic.shared.topicTransactionMoney){
 			Data.shared.moneyAmount = payload
