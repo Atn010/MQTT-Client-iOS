@@ -40,8 +40,8 @@ class LoginVC: UIViewController{
 				Data.shared.verificationStatus = 0
 				
 				connectionLogic.shared.configure()
-				
-				if(connectionLogic.shared.isConnected() == false){
+				connectionLogic.shared.mqtt.connect()
+				if(connectionLogic.shared.mqtt.connState.rawValue == 0 || connectionLogic.shared.mqtt.connState.rawValue == 3){
 					print("not Connected")
 					connectionLogic.shared.connect()
 				}
@@ -52,7 +52,7 @@ class LoginVC: UIViewController{
 				
 				
 				var timeout = 0
-				while(timeout<=120){
+				while(timeout<=60){
 					if(connectionLogic.shared.mqtt.connState.rawValue == 2){
 						break
 					}
@@ -71,7 +71,7 @@ class LoginVC: UIViewController{
 					}
 				}
 				
-				if(connectionLogic.shared.isConnected() == true){
+				if(connectionLogic.shared.mqtt.connState.rawValue == 2){
 				
 					timeout = 0
 					if(connectionLogic.shared.isConnected() == false){

@@ -31,7 +31,8 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 	var topicTransferRequest: String = ""
 	var topicTransferResponse: String = ""
 	
-	var mqtt: CocoaMQTT = CocoaMQTT(clientID: Data.shared.clientID)
+	var mqtt = CocoaMQTT(clientID: Data.shared.clientID)
+	
 	
 	func configure(){
 		topicVerificationRequest = "verification/request/" + Data.shared.clientID
@@ -45,6 +46,7 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		topicTransferResponse = "transfer/response/" + Data.shared.clientID
 		
 		mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
+		
 	}
 	
 	func connect() {
@@ -53,12 +55,12 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		
 		mqtt.autoReconnect = true
 		mqtt.autoReconnectTimeInterval = 5
-		mqtt.cleanSession = false
-		//mqtt.allowUntrustCACertificate = true
+		mqtt.cleanSession = true
+		mqtt.allowUntrustCACertificate = true
 		mqtt.enableSSL = false
 		mqtt.keepAlive = 60
 		mqtt.delegate = self
-		//mqtt.backgroundOnSocket = false
+		mqtt.backgroundOnSocket = false
 		mqtt.secureMQTT = false
 		
 		mqtt.clientID = Data.shared.clientID
@@ -69,17 +71,6 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		mqtt.connect()
 		mqtt.ping()
 		print("Connect Attempt")
-		
-		/*
-		mqtt.subscribe(topicVerificationResponse)
-		mqtt.subscribe(topicTransactionList)
-		mqtt.subscribe(topicTransferResponse)
-		mqtt.subscribe(topicTransactionMoney)
-		
-		mqtt.subscribe(topicVerificationRequest)
-		mqtt.subscribe(topicTransactionRequest)
-		mqtt.subscribe(topicTransferRequest)
-		*/
 		
 	}
 	func connectReady(){
@@ -149,8 +140,8 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 	
 	
 	
-	func mqtt(_ mqtt: CocoaMQTT, didConnectAck: CocoaMQTTConnAck) {
-		
+	func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
+		print(ack.rawValue)
 		print(CocoaMQTTConnAck.accept)
 		senderLogic.shared.connectReady()
 		print("connected")
