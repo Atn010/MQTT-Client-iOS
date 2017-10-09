@@ -39,45 +39,61 @@ class LoginVC: UIViewController{
 				Data.shared.clientPass = password.text!
 				Data.shared.verificationStatus = 0
 				
-				senderLogic.shared.configure()
+				connectionLogic.shared.configure()
 				
-				if(senderLogic.shared.isConnected() == false){
+				if(connectionLogic.shared.isConnected() == false){
 					print("not Connected")
-					senderLogic.shared.connect()
+					connectionLogic.shared.connect()
 				}
+				
+				print("MQTT ClientID : " + connectionLogic.shared.mqtt.clientID )
+				print("MQTT BrokerURL: " + connectionLogic.shared.mqtt.host )
+				print("MQTT Port     : " + connectionLogic.shared.mqtt.port.description)
+				
+				
 				var timeout = 0
-				while(timeout<=60){
-					if(senderLogic.shared.mqtt.connState.rawValue == 2){
+				while(timeout<=120){
+					if(connectionLogic.shared.mqtt.connState.rawValue == 2){
 						break
 					}
 					
-					timeout = timeout+1
-					sleep(1)
-					print ("waiting ", +timeout)
+					if(connectionLogic.shared.mqtt.connState.rawValue == 3){
+						print("Failed to connect")
+						break
+					}
+					if(connectionLogic.shared.mqtt.connState.rawValue == 1){
+						timeout = timeout+1
+						sleep(1)
+						print ("waiting ", +timeout)
+					}else{
+						print("Unexpected Error Occured")
+						break
+					}
 				}
-				if(senderLogic.shared.isConnected() == true){
+				
+				if(connectionLogic.shared.isConnected() == true){
 				
 					timeout = 0
-					if(senderLogic.shared.isConnected() == false){
+					if(connectionLogic.shared.isConnected() == false){
 						print("not connected, attempt to re connect")
-						senderLogic.shared.connect()
+						connectionLogic.shared.connect()
 					}
 					while(timeout<=30){
-						if(senderLogic.shared.isConnected() == false){
+						if(connectionLogic.shared.isConnected() == false){
 							print("not connected, attempt to re connect")
-							senderLogic.shared.connect()
+							connectionLogic.shared.connect()
 						}
 						if(Data.shared.notReady){
 
 						}else{
-							senderLogic.shared.verificationRequest()
+							connectionLogic.shared.verificationRequest()
 							
 							if(Data.shared.transferStatus == 1 ){
 								performSegue(withIdentifier: "Change", sender: nil)
 							}
 							if(Data.shared.transferStatus == 2 ){
 								print("Failed")
-								senderLogic.shared.mqtt.disconnect()
+								connectionLogic.shared.mqtt.disconnect()
 							}
 						}
 						timeout = timeout+1
@@ -86,13 +102,13 @@ class LoginVC: UIViewController{
 					
 					if (timeout >= 30){
 						print("Timeout, please try again later")
-						senderLogic.shared.mqtt.disconnect()
+						connectionLogic.shared.mqtt.disconnect()
 						
 					}
 					
 				}else{
 					print("Not connected")
-					senderLogic.shared.mqtt.disconnect()
+					connectionLogic.shared.mqtt.disconnect()
 				}
 				
 				

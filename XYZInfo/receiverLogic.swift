@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+import CocoaMQTT
+import CocoaAsyncSocket
+import SwiftyTimer
 
 class receiverLogic: NSObject, CocoaMQTTDelegate {
 	

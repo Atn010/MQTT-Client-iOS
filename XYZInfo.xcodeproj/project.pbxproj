@@ -18,6 +18,8 @@
 		5E52EE9F1F81FE0E00EE44AB /* senderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */; };
 		5E52EEA31F82241200EE44AB /* OverviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EEA21F82241200EE44AB /* OverviewTVC.swift */; };
 		5E52EEA51F82246300EE44AB /* TransferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EEA41F82246300EE44AB /* TransferVC.swift */; };
+		5E9E20EB1F8B12C1000E5770 /* logicConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E20EA1F8B12C1000E5770 /* logicConnection.m */; };
+		5E9E20ED1F8B14DC000E5770 /* connectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E20EC1F8B14DC000E5770 /* connectionManager.swift */; };
 		9EF58971D0EE7ABB70D394DB /* Pods_XYZInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF88A22EC8D8C77D258DDA8 /* Pods_XYZInfo.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,9 @@
 		5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = senderLogic.swift; sourceTree = "<group>"; };
 		5E52EEA21F82241200EE44AB /* OverviewTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTVC.swift; sourceTree = "<group>"; };
 		5E52EEA41F82246300EE44AB /* TransferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferVC.swift; sourceTree = "<group>"; };
+		5E9E20E91F8B12C1000E5770 /* logicConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = logicConnection.h; sourceTree = "<group>"; };
+		5E9E20EA1F8B12C1000E5770 /* logicConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = logicConnection.m; sourceTree = "<group>"; };
+		5E9E20EC1F8B14DC000E5770 /* connectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = connectionManager.swift; sourceTree = "<group>"; };
 		7BF88A22EC8D8C77D258DDA8 /* Pods_XYZInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XYZInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -82,11 +87,14 @@
 				5E3C755E1F81CD7F00644DA9 /* Assets.xcassets */,
 				5E3C75601F81CD7F00644DA9 /* LaunchScreen.storyboard */,
 				5E3C75631F81CD7F00644DA9 /* Info.plist */,
-				5E0FF8461F81DB730010FEA7 /* XYZInfo-Bridging-Header.h */,
 				5E52EE9C1F81FBAA00EE44AB /* receiverLogic.swift */,
 				5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */,
 				5E19AF151F838D7E0054CDA4 /* Data.swift */,
 				5E26729E1F87888C00EFA4CD /* connectionLogic.swift */,
+				5E0FF8461F81DB730010FEA7 /* XYZInfo-Bridging-Header.h */,
+				5E9E20E91F8B12C1000E5770 /* logicConnection.h */,
+				5E9E20EA1F8B12C1000E5770 /* logicConnection.m */,
+				5E9E20EC1F8B14DC000E5770 /* connectionManager.swift */,
 			);
 			path = XYZInfo;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
 				"${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMQTT/SwiftMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyTimer/SwiftyTimer.framework",
 			);
@@ -200,6 +209,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketRocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPlistManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyTimer.framework",
 			);
@@ -252,8 +262,10 @@
 				5E3C755A1F81CD7F00644DA9 /* LoginVC.swift in Sources */,
 				5E52EE9D1F81FBAA00EE44AB /* receiverLogic.swift in Sources */,
 				5E52EEA31F82241200EE44AB /* OverviewTVC.swift in Sources */,
+				5E9E20EB1F8B12C1000E5770 /* logicConnection.m in Sources */,
 				5E52EEA51F82246300EE44AB /* TransferVC.swift in Sources */,
 				5E3C75581F81CD7F00644DA9 /* AppDelegate.swift in Sources */,
+				5E9E20ED1F8B14DC000E5770 /* connectionManager.swift in Sources */,
 				5E26729F1F87888C00EFA4CD /* connectionLogic.swift in Sources */,
 				5E52EE9F1F81FE0E00EE44AB /* senderLogic.swift in Sources */,
 			);

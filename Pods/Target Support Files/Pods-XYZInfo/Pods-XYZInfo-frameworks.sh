@@ -106,6 +106,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftMQTT/SwiftMQTT.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyTimer/SwiftyTimer.framework"
 fi
@@ -114,6 +115,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftMQTT/SwiftMQTT.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyTimer/SwiftyTimer.framework"
 fi

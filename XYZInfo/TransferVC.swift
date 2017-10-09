@@ -26,7 +26,7 @@ class TransferVC: UIViewController {
     }
     
 	@IBAction func onSubmit(_ sender: Any) {
-		senderLogic.shared.transferRequest(Recipient: recepient.text!, Amount: amount.text!)
+		connectionLogic.shared.transferRequest(Recipient: recepient.text!, Amount: amount.text!)
 		recepient.text = ""
 		amount.text = ""
 		

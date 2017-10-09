@@ -10,6 +10,9 @@ target 'XYZInfo' do
 pod 'MQTTClient'
 pod 'MQTTClient/Websocket'
 pod 'SwiftyPlistManager'
+pod 'SwiftMQTT'
+#pod 'Moscapsule', :git =>  'https://github.com/flightonary/Moscapsule.git'
+#pod 'OpenSSL-Universal'
 
   # Pods for XYZInfo
 
