@@ -8,8 +8,6 @@
 
 import UIKit
 import CocoaMQTT
-import CocoaAsyncSocket
-import SwiftyTimer
 
 
 class connectionLogic: NSObject, CocoaMQTTDelegate {
@@ -44,12 +42,11 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		
 		topicTransferRequest = "transfer/request/" + Data.shared.clientID
 		topicTransferResponse = "transfer/response/" + Data.shared.clientID
-		
-		mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
-		
+
 	}
 	
 	func connect() {
+		mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
 		mqtt.username=""
 		mqtt.password=""
 		
@@ -62,16 +59,10 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		mqtt.delegate = self
 		mqtt.backgroundOnSocket = false
 		mqtt.secureMQTT = false
-		
-		mqtt.clientID = Data.shared.clientID
-		mqtt.host = "192.168.56.101"
-		mqtt.port = 1883
 		mqtt.willMessage = CocoaMQTTWill(topic: "will", message: "Dead")
-		
-		mqtt.connect()
-		mqtt.ping()
+
 		print("Connect Attempt")
-		
+		mqtt.connect()
 	}
 	func connectReady(){
 		mqtt.subscribe(topicVerificationResponse)
@@ -84,19 +75,9 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		mqtt.subscribe(topicTransferRequest)
 	}
 	
-	func isConnected() -> Bool{
-		if (mqtt.connState.rawValue == 2){
-			return true
-		}
-		
-		return false
-		
-	}
-	
 	func publishMessage(Topic: String, Payload: String){
 		
 		mqtt.publish(Topic, withString: Payload, qos: CocoaMQTTQOS.qos1, retained: false, dup: false)
-		//mqtt.publish(CocoaMQTTMessage.init(topic: Topic, string: Payload, qos: CocoaMQTTQOS.init(rawValue: 1)!, retained: false, dup: true))
 		print("published to topic: "+Topic+" | And Payload: "+Payload)
 	}
 	
@@ -141,10 +122,13 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 	
 	
 	func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
-		print(ack.rawValue)
-		print(CocoaMQTTConnAck.accept)
-		senderLogic.shared.connectReady()
-		print("connected")
+		if (ack == .accept) {
+			connectReady()
+			print("connected")
+			if (Data.shared.verificationStatus  != 1){
+				verificationRequest()
+			}
+		}
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
@@ -159,16 +143,23 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		
 		let Topic: String = message.topic
 		let payload: String = message.string!
+		print("topic: " + Topic)
+		print("payload:" + payload)
 		
-		if (Topic == senderLogic.shared.topicVerificationResponse){
+		
+		if (Topic == topicVerificationResponse){
 			let Message = payload.components(separatedBy: "~")
 			
 			let statusDate = Message[0]
 			let statusMessage = Message[1]
 			
+			print(statusDate + " VS. " + Data.shared.currentVerificationDate)
+			print(statusMessage)
+			
 			if(statusDate == Data.shared.currentVerificationDate){
 				if(statusMessage == "confirmed"){
 					Data.shared.verificationStatus = 1
+					transactionRequest()
 				}
 				
 				if(statusMessage == "failed"){
@@ -179,7 +170,7 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 			
 			
 		}
-		if (Topic == senderLogic.shared.topicTransactionList){
+		if (Topic == topicTransactionList){
 			Data.shared.transferList.removeAll()
 			
 			var rawList = payload
@@ -190,10 +181,12 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 			
 			Data.shared.transferList = transferlist
 		}
-		if (Topic == senderLogic.shared.topicTransactionMoney){
+		
+		if (Topic == topicTransactionMoney){
 			Data.shared.moneyAmount = payload
 		}
-		if (Topic == senderLogic.shared.topicTransferResponse){
+		
+		if (Topic == topicTransferResponse){
 			let Message = payload.components(separatedBy: "~")
 			
 			let statusDate = Message[0]
@@ -202,6 +195,7 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 			if(statusDate == Data.shared.currentVerificationDate){
 				if(statusMessage == "confirmed"){
 					Data.shared.transferStatus = 1
+					
 				}
 				
 				if(statusMessage == "failed"){
