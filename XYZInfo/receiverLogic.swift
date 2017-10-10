@@ -7,19 +7,31 @@
 //
 
 import UIKit
+import CocoaMQTT
+import CocoaAsyncSocket
+import SwiftyTimer
 
+class receiverLogic: NSObject, CocoaMQTTDelegate {
+	
+	static let shared = receiverLogic()
+	
+	private override init() {
+		print("receiverLogic Object initialized")
+	}
 
-class receiverLogic: CocoaMQTTDelegate {
-	func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
+	func mqtt(_ mqtt: CocoaMQTT, didConnectAck: CocoaMQTTConnAck) {
 		
+		print(CocoaMQTTConnAck.accept)
+		senderLogic.shared.connectReady()
+		print("connected")
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
-		
+		print("message: "+message.string!+" Sent" )
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
-		
+		print("received")
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
@@ -81,11 +93,12 @@ class receiverLogic: CocoaMQTTDelegate {
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
-		
+		print("subcribed to "+topic)
+		Data.shared.notReady = false
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
-		
+		print("unsubcribed")
 	}
 	
 	func mqttDidPing(_ mqtt: CocoaMQTT) {
@@ -97,7 +110,7 @@ class receiverLogic: CocoaMQTTDelegate {
 	}
 	
 	func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
-		
+		print("Disconnected")
 	}
 	
 

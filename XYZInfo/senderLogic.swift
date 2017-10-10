@@ -11,6 +11,7 @@ import CocoaMQTT
 //import SwiftyPlistManager
 
 class senderLogic: NSObject {
+	
 	static let shared = senderLogic()
 	
 	private override init() {
@@ -45,23 +46,51 @@ class senderLogic: NSObject {
 	}
 	
 	func connect() {
+		mqtt.username=""
+		mqtt.password=""
+		
 		mqtt.autoReconnect = true
-		mqtt.autoReconnectTimeInterval = 3
+		mqtt.autoReconnectTimeInterval = 5
 		mqtt.cleanSession = false
 		mqtt.allowUntrustCACertificate = true
+		mqtt.clientID = Data.shared.clientID
+		mqtt.enableSSL = false
 		mqtt.keepAlive = 60
-		mqtt.delegate = receiverLogic()
+		mqtt.delegate = receiverLogic.shared
+		mqtt.backgroundOnSocket = false
+		mqtt.secureMQTT = false
+		mqtt.host = "192.168.56.101"
+		mqtt.port = 1883
+		mqtt.willMessage = CocoaMQTTWill(topic: "will", message: "Dead")
+		
 		mqtt.connect()
+		print("Connect Attempt")
+		
+		
 		mqtt.subscribe(topicVerificationResponse)
 		mqtt.subscribe(topicTransactionList)
 		mqtt.subscribe(topicTransferResponse)
 		mqtt.subscribe(topicTransactionMoney)
 		
+		mqtt.subscribe(topicVerificationRequest)
+		mqtt.subscribe(topicTransactionRequest)
+		mqtt.subscribe(topicTransferRequest)
+
+		
+	}
+	func connectReady(){
+		mqtt.subscribe(topicVerificationResponse)
+		mqtt.subscribe(topicTransactionList)
+		mqtt.subscribe(topicTransferResponse)
+		mqtt.subscribe(topicTransactionMoney)
+		
+		mqtt.subscribe(topicVerificationRequest)
+		mqtt.subscribe(topicTransactionRequest)
+		mqtt.subscribe(topicTransferRequest)
 	}
 	
 	func isConnected() -> Bool{
-		print(mqtt.connState.rawValue)
-		if (mqtt.connState.rawValue == 1){
+		if (mqtt.connState.rawValue == 2){
 			return true
 		}
 		
@@ -70,8 +99,9 @@ class senderLogic: NSObject {
 	}
 	
 	func publishMessage(Topic: String, Payload: String){
-		//let Message = CocoaMQTTMessage(topic: Topic, string: Payload, qos: CocoaMQTTQOS.qos1, retained: false)
+		
 		mqtt.publish(Topic, withString: Payload, qos: CocoaMQTTQOS.qos1, retained: false, dup: false)
+		//mqtt.publish(CocoaMQTTMessage.init(topic: Topic, string: Payload, qos: CocoaMQTTQOS.init(rawValue: 1)!, retained: false, dup: true))
 		print("published to topic: "+Topic+" | And Payload: "+Payload)
 	}
 	
@@ -89,7 +119,6 @@ class senderLogic: NSObject {
 		
 		Data.shared.verificationStatus = 0
 		Data.shared.currentVerificationDate = dateTime
-		
 		
 	}
 	

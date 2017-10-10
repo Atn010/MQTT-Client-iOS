@@ -11,6 +11,9 @@ import SwiftyPlistManager
 
 
 class LoginVC: UIViewController{
+	
+	let data = Data.shared
+	let conLogic = connectionLogic.shared
 
 	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var password: UITextField!
@@ -29,56 +32,26 @@ class LoginVC: UIViewController{
 	
 	
 	@IBAction func Logon(_ sender: Any) {
-		
-
-		
 		if(username.text!.characters.count > 4){
 			if(password.text!.characters.count > 4){
+				
+				if(data.verificationStatus == 1){
+					performSegue(withIdentifier: "Change", sender: nil)
+				}else{
+				
 
 				Data.shared.clientID = username.text!
 				Data.shared.clientPass = password.text!
 				Data.shared.verificationStatus = 0
 				
-				senderLogic.shared.configure()
+				conLogic.configure()
+				//conLogic.mqtt.connect()
+				conLogic.connect()
 				
-				if(senderLogic.shared.isConnected() == false){
-					senderLogic.shared.connect()
+				print("MQTT ClientID : " + conLogic.mqtt.clientID )
+				print("MQTT BrokerURL: " + conLogic.mqtt.host )
+				print("MQTT Port     : " + conLogic.mqtt.port.description)
 				}
-				
-				senderLogic.shared.verificationRequest()
-				
-				if(senderLogic.shared.isConnected() == true){
-					var timeout = 0
-					
-					if(senderLogic.shared.isConnected() == false){
-						senderLogic.shared.connect()
-					}
-				
-					while(timeout<=30){
-						if(Data.shared.transferStatus == 1 ){
-							performSegue(withIdentifier: "Change", sender: nil)
-						}
-						if(Data.shared.transferStatus == 2 ){
-							print("Failed")
-							senderLogic.shared.mqtt.disconnect()
-						}
-						timeout = timeout+1
-						sleep(1)
-					}
-					
-					if (timeout >= 30){
-						print("Timeout, please try again later")
-						senderLogic.shared.mqtt.disconnect()
-						
-					}
-					
-				}else{
-					print("Not connected")
-					senderLogic.shared.mqtt.disconnect()
-				}
-				
-				
-				
 			}
 		}
 

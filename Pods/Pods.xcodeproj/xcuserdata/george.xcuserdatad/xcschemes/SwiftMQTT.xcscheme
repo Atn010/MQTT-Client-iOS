@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'ED645F88DCB1BF0B8D3E44AF09B2A171'
-               BlueprintName = 'SwiftyPlistManager'
+               BlueprintIdentifier = '4124DD47CB766CCD42262DAA5CD2E96B'
+               BlueprintName = 'SwiftMQTT'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftyPlistManager.framework'>
+               BuildableName = 'SwiftMQTT.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -14,6 +14,7 @@ class OverviewTVC: UITableViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		connectionLogic.shared.transactionRequest()
 		if itemArray .isEmpty{
 			itemArray.append("Please wait while we are retriving Data from server")
 		}

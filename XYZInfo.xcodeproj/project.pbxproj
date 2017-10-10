@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E19AF161F838D7E0054CDA4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E19AF151F838D7E0054CDA4 /* Data.swift */; };
+		5E26729F1F87888C00EFA4CD /* connectionLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26729E1F87888C00EFA4CD /* connectionLogic.swift */; };
 		5E3C75581F81CD7F00644DA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C75571F81CD7F00644DA9 /* AppDelegate.swift */; };
 		5E3C755A1F81CD7F00644DA9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C75591F81CD7F00644DA9 /* LoginVC.swift */; };
 		5E3C755D1F81CD7F00644DA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E3C755B1F81CD7F00644DA9 /* Main.storyboard */; };
@@ -17,7 +18,8 @@
 		5E52EE9F1F81FE0E00EE44AB /* senderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */; };
 		5E52EEA31F82241200EE44AB /* OverviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EEA21F82241200EE44AB /* OverviewTVC.swift */; };
 		5E52EEA51F82246300EE44AB /* TransferVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E52EEA41F82246300EE44AB /* TransferVC.swift */; };
-		5E52EEA71F82305B00EE44AB /* List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E52EEA61F82305B00EE44AB /* List.plist */; };
+		5E9E20EB1F8B12C1000E5770 /* logicConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E20EA1F8B12C1000E5770 /* logicConnection.m */; };
+		5E9E20ED1F8B14DC000E5770 /* connectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E20EC1F8B14DC000E5770 /* connectionManager.swift */; };
 		9EF58971D0EE7ABB70D394DB /* Pods_XYZInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF88A22EC8D8C77D258DDA8 /* Pods_XYZInfo.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,7 @@
 		436CDE13E8C32A9D2EF20049 /* Pods-XYZInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYZInfo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XYZInfo/Pods-XYZInfo.release.xcconfig"; sourceTree = "<group>"; };
 		5E0FF8461F81DB730010FEA7 /* XYZInfo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XYZInfo-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E19AF151F838D7E0054CDA4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		5E26729E1F87888C00EFA4CD /* connectionLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = connectionLogic.swift; sourceTree = "<group>"; };
 		5E3C75541F81CD7F00644DA9 /* XYZInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYZInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E3C75571F81CD7F00644DA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E3C75591F81CD7F00644DA9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -37,7 +40,9 @@
 		5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = senderLogic.swift; sourceTree = "<group>"; };
 		5E52EEA21F82241200EE44AB /* OverviewTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTVC.swift; sourceTree = "<group>"; };
 		5E52EEA41F82246300EE44AB /* TransferVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferVC.swift; sourceTree = "<group>"; };
-		5E52EEA61F82305B00EE44AB /* List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = List.plist; sourceTree = "<group>"; };
+		5E9E20E91F8B12C1000E5770 /* logicConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = logicConnection.h; sourceTree = "<group>"; };
+		5E9E20EA1F8B12C1000E5770 /* logicConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = logicConnection.m; sourceTree = "<group>"; };
+		5E9E20EC1F8B14DC000E5770 /* connectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = connectionManager.swift; sourceTree = "<group>"; };
 		7BF88A22EC8D8C77D258DDA8 /* Pods_XYZInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XYZInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -82,11 +87,14 @@
 				5E3C755E1F81CD7F00644DA9 /* Assets.xcassets */,
 				5E3C75601F81CD7F00644DA9 /* LaunchScreen.storyboard */,
 				5E3C75631F81CD7F00644DA9 /* Info.plist */,
-				5E0FF8461F81DB730010FEA7 /* XYZInfo-Bridging-Header.h */,
 				5E52EE9C1F81FBAA00EE44AB /* receiverLogic.swift */,
 				5E52EE9E1F81FE0E00EE44AB /* senderLogic.swift */,
-				5E52EEA61F82305B00EE44AB /* List.plist */,
 				5E19AF151F838D7E0054CDA4 /* Data.swift */,
+				5E26729E1F87888C00EFA4CD /* connectionLogic.swift */,
+				5E0FF8461F81DB730010FEA7 /* XYZInfo-Bridging-Header.h */,
+				5E9E20E91F8B12C1000E5770 /* logicConnection.h */,
+				5E9E20EA1F8B12C1000E5770 /* logicConnection.m */,
+				5E9E20EC1F8B14DC000E5770 /* connectionManager.swift */,
 			);
 			path = XYZInfo;
 			sourceTree = "<group>";
@@ -173,7 +181,6 @@
 			files = (
 				5E3C75621F81CD7F00644DA9 /* LaunchScreen.storyboard in Resources */,
 				5E3C755F1F81CD7F00644DA9 /* Assets.xcassets in Resources */,
-				5E52EEA71F82305B00EE44AB /* List.plist in Resources */,
 				5E3C755D1F81CD7F00644DA9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +199,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
 				"${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMQTT/SwiftMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyTimer/SwiftyTimer.framework",
 			);
@@ -201,6 +209,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketRocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPlistManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyTimer.framework",
 			);
@@ -253,8 +262,11 @@
 				5E3C755A1F81CD7F00644DA9 /* LoginVC.swift in Sources */,
 				5E52EE9D1F81FBAA00EE44AB /* receiverLogic.swift in Sources */,
 				5E52EEA31F82241200EE44AB /* OverviewTVC.swift in Sources */,
+				5E9E20EB1F8B12C1000E5770 /* logicConnection.m in Sources */,
 				5E52EEA51F82246300EE44AB /* TransferVC.swift in Sources */,
 				5E3C75581F81CD7F00644DA9 /* AppDelegate.swift in Sources */,
+				5E9E20ED1F8B14DC000E5770 /* connectionManager.swift in Sources */,
+				5E26729F1F87888C00EFA4CD /* connectionLogic.swift in Sources */,
 				5E52EE9F1F81FE0E00EE44AB /* senderLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +407,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaAsyncSocket\"/**",
@@ -404,13 +417,14 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyTimer\"/**",
 				);
 				INFOPLIST_FILE = XYZInfo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Com.atn010.XYZInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "XYZInfo/XYZInfo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -421,6 +435,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaAsyncSocket\"/**",
@@ -430,12 +445,13 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyTimer\"/**",
 				);
 				INFOPLIST_FILE = XYZInfo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Com.atn010.XYZInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "XYZInfo/XYZInfo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
