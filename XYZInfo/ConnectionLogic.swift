@@ -111,7 +111,7 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		
 		let payload: String = dateTime+"~"+Data.shared.clientID+"~"+Recipient+"~"+Amount
 		
-		publishMessage(Topic: topicVerificationRequest,Payload: payload)
+		publishMessage(Topic: topicTransferRequest,Payload: payload)
 		
 		Data.shared.transferStatus = 0
 		Data.shared.currentTransferDate = dateTime
@@ -187,15 +187,19 @@ class connectionLogic: NSObject, CocoaMQTTDelegate {
 		}
 		
 		if (Topic == topicTransferResponse){
+			
 			let Message = payload.components(separatedBy: "~")
 			
 			let statusDate = Message[0]
 			let statusMessage = Message[1]
 			
+			print(statusDate + " VS. " + Data.shared.currentTransferDate)
+			print(payload)
+			
 			if(statusDate == Data.shared.currentVerificationDate){
 				if(statusMessage == "confirmed"){
 					Data.shared.transferStatus = 1
-					
+					transactionRequest()
 				}
 				
 				if(statusMessage == "failed"){
