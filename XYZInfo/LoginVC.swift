@@ -40,17 +40,13 @@ class LoginVC: UIViewController{
 				}else{
 				
 
-				Data.shared.clientID = username.text!
-				Data.shared.clientPass = password.text!
-				Data.shared.verificationStatus = 0
+				data.clientID = username.text!
+				data.clientPass = password.text!
+				data.verificationStatus = 0
 				
 				conLogic.configure()
-				//conLogic.mqtt.connect()
 				conLogic.connect()
 				
-				print("MQTT ClientID : " + conLogic.mqtt.clientID )
-				print("MQTT BrokerURL: " + conLogic.mqtt.host )
-				print("MQTT Port     : " + conLogic.mqtt.port.description)
 				}
 			}
 		}
