@@ -32,6 +32,7 @@ class connectionLogic: NSObject {
 	var mqtt = CocoaMQTT(clientID: Data.shared.clientID)
 	
 	
+	/// This Method configure the client with a predetermine setting
 	func configure(){
 		mqtt = CocoaMQTT(clientID: Data.shared.clientID, host: "192.168.56.101", port: 1883)
 		
@@ -51,11 +52,13 @@ class connectionLogic: NSObject {
 		topicTransferResponse = "transfer/response/" + Data.shared.clientID
 	}
 	
+	/// This Method connects the Client to the Broker
 	func connect() {
 		print("Connect Attempt")
 		mqtt.connect()
 	}
 	
+	/// This Method subscribes the Client to a predetermine Topic
 	func connectReady(){
 		mqtt.subscribe(topicVerificationResponse)
 		mqtt.subscribe(topicTransactionList)
@@ -63,44 +66,65 @@ class connectionLogic: NSObject {
 		mqtt.subscribe(topicTransactionMoney)
 	}
 	
+	/// This Method publish the message with a preset
+	///
+	/// - Parameters:
+	///   - Topic: The Topic for the broker and server
+	///   - Payload: The Payload Message to be delivered
 	func publishMessage(Topic: String, Payload: String){
 		mqtt.publish(Topic, withString: Payload, qos: CocoaMQTTQOS.qos1, retained: false, dup: false)
 	}
 	
-	func verificationRequest(){
-		
+	/// This Method get and format the current date
+	///
+	/// - Returns: The Date in a String with a format
+	func getCurrentDate() -> String{
 		let dateFormatter = DateFormatter()
 		let nowDate = Date()
 		
 		dateFormatter.dateFormat = "dd/MM/yy HH:mm"
 		let dateTime = dateFormatter.string(from: nowDate)
 		
-		let payload: String = dateTime+"~"+Data.shared.clientID+"~"+Data.shared.clientPass
-		
-		publishMessage(Topic: topicVerificationRequest,Payload: payload)
-		
-		Data.shared.verificationStatus = 0
-		Data.shared.currentVerificationDate = dateTime
-		
+		return dateTime
 	}
 	
+	/// This method sends a verification request to the Server thru the Broker
+	///
+	/// The Request is configured with the parameter and store the necessary information for response verification
+	/// Publish the Request to the Server thru the Broker
+	func verificationRequest(){
+		let payload: String = getCurrentDate()+"~"+Data.shared.clientID+"~"+Data.shared.clientPass
+		
+		Data.shared.verificationStatus = 0
+		Data.shared.currentVerificationDate = getCurrentDate()
+		
+		publishMessage(Topic: topicVerificationRequest,Payload: payload)
+
+	}
+	
+	
+	/// This method sends a request to the Server thru the Broker
 	func transactionRequest(){
 		publishMessage(Topic: topicTransactionRequest, Payload: "request")
 	}
 	
+	/// This method sends a Transfer Request to the Server thru the Broker
+	///
+	/// - Parameters:
+	///   - Recipient: This is the Recipient (Target) of the Transfer
+	///   - Amount: This is the Amount of money wished to be Transfer
+	///
+	/// The Request is configured with the parameter and store the necessary information for response verification
+	/// Publish the Request to the Server thru the Broker
 	func transferRequest(Recipient: String, Amount: String){
 		
-		let dateFormatter = DateFormatter()
-		let nowDate = Date()
-		dateFormatter.dateFormat = "dd/MM/yy HH:mm"
-		let dateTime = dateFormatter.string(from: nowDate)
+		let payload: String = getCurrentDate()+"~"+Data.shared.clientID+"~"+Recipient+"~"+Amount
 		
-		let payload: String = dateTime+"~"+Data.shared.clientID+"~"+Recipient+"~"+Amount
+		Data.shared.currentTransferDate = getCurrentDate()
+		Data.shared.transferStatus = 0
 		
 		publishMessage(Topic: topicTransferRequest,Payload: payload)
-		
-		Data.shared.transferStatus = 0
-		Data.shared.currentTransferDate = dateTime
+
 	}
 	
 }
@@ -108,6 +132,11 @@ class connectionLogic: NSObject {
 
 extension connectionLogic: CocoaMQTTDelegate{
 	
+	/// This Method receive acknowledgement when Connection between client and broker is established
+	///
+	/// - Parameters:
+	///   - mqtt: the receiverCocoaMQTT
+	///   - ack: the message of the acknowledgement
 	func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
 		if (ack == .accept) {
 			connectReady()
@@ -123,14 +152,18 @@ extension connectionLogic: CocoaMQTTDelegate{
 	func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
 	}
 	
+	
+	/// This Method processes the Verification
+	///
+	/// - Parameter payload: This is the message retrived from the broker
+	///
+	/// The Message is seperated into it's components
+	/// The Message is checked whether or not the Date is correct and checks for the message and Execute the appropriate function
 	fileprivate func processVerificationResponse(_ payload: String) {
 		let Message = payload.components(separatedBy: "~")
 		
 		let statusDate = Message[0]
 		let statusMessage = Message[1]
-		
-		print(statusDate + " VS. " + Data.shared.currentVerificationDate)
-		print(statusMessage)
 		
 		if(statusDate == Data.shared.currentVerificationDate){
 			if(statusMessage == "confirmed"){
@@ -141,10 +174,15 @@ extension connectionLogic: CocoaMQTTDelegate{
 			if(statusMessage == "failed"){
 				Data.shared.verificationStatus = 2
 			}
-			
 		}
 	}
 	
+	/// This Method processes the Transaction
+	///
+	/// - Parameter payload: This is the message retrived from the broker
+	///
+	/// The Message is processed by removing the first and last character and seperating the String of characters into a list
+	/// The new list is then set as the list to be displayed to the User
 	fileprivate func processTransactionList(_ payload: String) {
 		Data.shared.transferList.removeAll()
 		
@@ -157,11 +195,19 @@ extension connectionLogic: CocoaMQTTDelegate{
 		Data.shared.transferList = transferlist
 	}
 	
+	/// This Method process the message and retrive the amount of money from the message
+	///
+	/// - Parameter payload: This is the message retrived from the broker
 	fileprivate func processAccountMoney(_ payload: String) {
 		Data.shared.moneyAmount = payload
 	}
 	
-	
+	/// This Method processes the Transfer
+	///
+	/// - Parameter payload: This is the message retrived from the broker
+	///
+	/// The Message is seperated into it's components
+	/// The Message is checked whether or not the Date is correct and checks for the message and Execute the appropriate function.
 	fileprivate func processTransferResponse(_ payload: String) {
 		let Message = payload.components(separatedBy: "~")
 		
@@ -177,10 +223,15 @@ extension connectionLogic: CocoaMQTTDelegate{
 			if(statusMessage == "failed"){
 				Data.shared.transferStatus = 2
 			}
-			
 		}
 	}
-	
+
+	/// This method receive the Message from the broker when connected
+	///
+	/// - Parameters:
+	///   - mqtt: the receiverCocoaMQTT
+	///   - message: the Message from the Broker
+	///   - id: the indentification of the message
 	func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
 		
 		let Topic: String = message.topic
