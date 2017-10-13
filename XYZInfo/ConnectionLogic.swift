@@ -168,7 +168,7 @@ extension connectionLogic: CocoaMQTTDelegate{
 		if(statusDate == Data.shared.currentVerificationDate){
 			if(statusMessage == "confirmed"){
 				Data.shared.verificationStatus = 1
-				transactionRequest()
+	//			transactionRequest()
 			}
 			
 			if(statusMessage == "failed"){
@@ -192,7 +192,7 @@ extension connectionLogic: CocoaMQTTDelegate{
 		
 		let transferlist = rawList.components(separatedBy: ", ")
 		
-		Data.shared.transferList = transferlist
+		Data.shared.transferList = transferlist.reversed()
 	}
 	
 	/// This Method process the message and retrive the amount of money from the message
@@ -236,6 +236,8 @@ extension connectionLogic: CocoaMQTTDelegate{
 		
 		let Topic: String = message.topic
 		let payload: String = message.string!
+		
+		print("Topic: " + Topic + " | Message: " + payload)
 		
 		if (Topic == topicVerificationResponse){
 			processVerificationResponse(payload)
