@@ -14,7 +14,7 @@ class LoginVC: UIViewController{
 	
 	let data = Data.shared
 	let conLogic = connectionLogic.shared
-
+	
 	@IBOutlet weak var username: UITextField!
 	@IBOutlet weak var password: UITextField!
 	
@@ -38,23 +38,21 @@ class LoginVC: UIViewController{
 				if(data.verificationStatus == 1){
 					performSegue(withIdentifier: "Change", sender: nil)
 				}else{
-				
-
-				Data.shared.clientID = username.text!
-				Data.shared.clientPass = password.text!
-				Data.shared.verificationStatus = 0
-				
-				conLogic.configure()
-				//conLogic.mqtt.connect()
-				conLogic.connect()
-				
-				print("MQTT ClientID : " + conLogic.mqtt.clientID )
-				print("MQTT BrokerURL: " + conLogic.mqtt.host )
-				print("MQTT Port     : " + conLogic.mqtt.port.description)
+					if(conLogic.mqtt.connState == .connecting){
+						
+					}else{
+						
+						data.clientID = username.text!
+						data.clientPass = password.text!
+						data.verificationStatus = 0
+						
+						conLogic.configure()
+						conLogic.connect()
+					}
 				}
 			}
 		}
-
+		
 	}
 	
 	

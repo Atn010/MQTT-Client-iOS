@@ -7,21 +7,37 @@
 //
 
 import UIKit
-import SwiftyPlistManager
 
 class OverviewTVC: UITableViewController{
 	var itemArray: [String] = Data.shared.transferList
+	var count = 0;
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		connectionLogic.shared.transactionRequest()
+		
 		if itemArray .isEmpty{
+			connectionLogic.shared.transactionRequest()
 			itemArray.append("Please wait while we are retriving Data from server")
+		}else{
+			
 		}
 
 
     }
-
+	@IBAction func onRefresh(_ sender: Any) {
+		if(count >= 3){
+			connectionLogic.shared.transactionRequest()
+			count = 0
+		}else{
+			itemArray = Data.shared.transferList
+			
+			self.tableView.reloadData()
+			
+			count = count + 1
+		}
+		print(count)
+	}
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,6 +45,8 @@ class OverviewTVC: UITableViewController{
 
     // MARK: - Table view data source
 
+	
+	
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
