@@ -168,7 +168,7 @@ extension connectionLogic: CocoaMQTTDelegate{
 		if(statusDate == Data.shared.currentVerificationDate){
 			if(statusMessage == "confirmed"){
 				Data.shared.verificationStatus = 1
-	//			transactionRequest()
+				
 			}
 			
 			if(statusMessage == "failed"){
