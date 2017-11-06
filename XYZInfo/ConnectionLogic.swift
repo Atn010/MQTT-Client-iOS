@@ -72,6 +72,7 @@ class connectionLogic: NSObject {
 	///   - Topic: The Topic for the broker and server
 	///   - Payload: The Payload Message to be delivered
 	func publishMessage(Topic: String, Payload: String){
+		print("Publishing to topic: " + Topic + " | With Message: "+Payload)
 		mqtt.publish(Topic, withString: Payload, qos: CocoaMQTTQOS.qos1, retained: false, dup: false)
 	}
 	
@@ -98,6 +99,8 @@ class connectionLogic: NSObject {
 		Data.shared.verificationStatus = 0
 		Data.shared.currentVerificationDate = getCurrentDate()
 		
+		print("Verification attempt")
+		
 		publishMessage(Topic: topicVerificationRequest,Payload: payload)
 
 	}
@@ -105,6 +108,7 @@ class connectionLogic: NSObject {
 	
 	/// This method sends a request to the Server thru the Broker
 	func transactionRequest(){
+		print("Request transaction list")
 		publishMessage(Topic: topicTransactionRequest, Payload: "request")
 	}
 	
@@ -122,7 +126,7 @@ class connectionLogic: NSObject {
 		
 		Data.shared.currentTransferDate = getCurrentDate()
 		Data.shared.transferStatus = 0
-		
+		print("Transfer Request Attempt")
 		publishMessage(Topic: topicTransferRequest,Payload: payload)
 
 	}
@@ -140,7 +144,7 @@ extension connectionLogic: CocoaMQTTDelegate{
 	func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
 		if (ack == .accept) {
 			connectReady()
-			if (Data.shared.verificationStatus  != 1){
+			if (Data.shared.verifiedStatus == false){
 				verificationRequest()
 			}
 		}
@@ -150,6 +154,7 @@ extension connectionLogic: CocoaMQTTDelegate{
 	}
 	
 	func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
+		print("The Message has Arrived into the server")
 	}
 	
 	
@@ -272,6 +277,7 @@ extension connectionLogic: CocoaMQTTDelegate{
 	}
 	
 	func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
+		print("Disconnected")
 		Data.shared.notReady = true
 	}
 	

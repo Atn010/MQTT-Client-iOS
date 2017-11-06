@@ -45,6 +45,7 @@ class LoginVC: UIViewController{
 						data.clientID = username.text!
 						data.clientPass = password.text!
 						data.verificationStatus = 0
+						data.verifiedStatus = false
 						
 						conLogic.configure()
 						conLogic.connect()

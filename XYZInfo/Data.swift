@@ -29,5 +29,6 @@ class Data: NSObject {
 	
 	
 	var notReady : Bool = true
+	var verifiedStatus: Bool = false
 
 }
